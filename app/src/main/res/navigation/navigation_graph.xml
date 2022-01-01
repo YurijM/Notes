@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/startFragment">
 
     <fragment
         android:id="@+id/addNewNoteFragment"
         android:name="com.example.notes.screens.AddNewNoteFragment"
         android:label="fragment_add_new_note"
-        tools:layout="@layout/fragment_add_new_note" >
+        tools:layout="@layout/fragment_add_new_note">
         <action
             android:id="@+id/action_addNewNoteFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/mainFragment"
         android:name="com.example.notes.screens.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_noteFragment"
             app:destination="@id/noteFragment" />
@@ -33,16 +33,16 @@
         android:id="@+id/noteFragment"
         android:name="com.example.notes.screens.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" >
+        tools:layout="@layout/fragment_note">
         <action
             android:id="@+id/action_noteFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.notes.screens.StartFragment"
+        android:name="com.example.notes.screens.start.StartFragment"
         android:label="fragment_start"
-        tools:layout="@layout/fragment_start" >
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_startFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
