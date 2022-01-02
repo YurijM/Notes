@@ -3,8 +3,8 @@
     <string name="add_note">Добавить заметку</string>
     <string name="add">Добавить</string>
     <string name="what_use">Что использовать?</string>
-    <string name="input_note_title">Введите заголовок статьи</string>
-    <string name="input_note_text">Введите текст статьи</string>
+    <string name="input_note_title">Введите заголовок заметки</string>
+    <string name="input_note_text">Введите текст заметки</string>
     <string name="room">room</string>
     <string name="note">Заметки</string>
 </resources>

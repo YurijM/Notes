@@ -1,4 +1,4 @@
-package com.example.notes.screens.start
+package com.example.notes.screens.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,21 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.notes.R
-import com.example.notes.databinding.FragmentStartBinding
+import com.example.notes.databinding.FragmentMainBinding
 import com.example.notes.utilits.APP_ACTIVITY
-import com.example.notes.utilits.TYPE_ROOM
 
-class StartFragment : Fragment() {
-    private var _binding: FragmentStartBinding? = null
+class MainFragment : Fragment() {
+    private var _binding: FragmentMainBinding? = null
     private val mBinding get() = _binding!!
-    private lateinit var mViewModel: StartFragmentViewModel
+    private lateinit var mViewModel: MainFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentStartBinding.inflate(layoutInflater, container, false)
-
+        // Inflate the layout for this fragment
+        _binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         return mBinding.root
     }
 
@@ -31,11 +30,9 @@ class StartFragment : Fragment() {
     }
 
     private fun init() {
-        mViewModel = ViewModelProvider(this).get(StartFragmentViewModel::class.java)
-        mBinding.btnRoom.setOnClickListener {
-            mViewModel.initDatabase(TYPE_ROOM) {
-                APP_ACTIVITY.mNavController.navigate(R.id.action_startFragment_to_mainFragment)
-            }
+        mViewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
+        mBinding.btnAddNote.setOnClickListener {
+            APP_ACTIVITY.mNavController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
     }
 
