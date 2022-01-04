@@ -52,7 +52,7 @@ class StartFragment : Fragment() {
                         PASSWORD = password
 
                         mViewModel.initDatabase(TYPE_FIREBASE) {
-                            showToast(getString(R.string.connect_to_firebase_ok))
+                            APP_ACTIVITY.navController.navigate(R.id.action_startFragment_to_mainFragment)
                         }
                     } else {
                         showToast(getString(R.string.fields_should_be_filled))
