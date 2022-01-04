@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "895382352073",
+    "firebase_url": "https://notes-32dd4-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "notes-32dd4",
+    "storage_bucket": "notes-32dd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895382352073:android:cefdf8d5da7b0cef845d18",
+        "android_client_info": {
+          "package_name": "com.example.notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895382352073-2c112m01pu5s832mt2rqg0q76l8m09jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-sVZl3XTV7vxW-CPCFVGLFmp9rmSOrn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895382352073-2c112m01pu5s832mt2rqg0q76l8m09jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

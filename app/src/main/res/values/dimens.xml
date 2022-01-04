@@ -12,4 +12,5 @@
     <dimen name="margin_small">4dp</dimen>
     <dimen name="margin_large">12dp</dimen>
     <dimen name="width_button_start">200dp</dimen>
+    <dimen name="width_input_email">300dp</dimen>
 </resources>

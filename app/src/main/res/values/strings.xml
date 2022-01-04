@@ -8,4 +8,9 @@
     <string name="room">room</string>
     <string name="note">Заметки</string>
     <string name="fields_should_be_filled">Поля должны быть заполнены</string>
+    <string name="firebase">firebase</string>
+    <string name="enter_email">Введите адрес email</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="login">Войти</string>
+    <string name="connect_to_firebase_ok">Подключение к Firebase прошло успешно</string>
 </resources>
