@@ -8,40 +8,45 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class AppFirebaseRepository: DatabaseRepository {
-    private val mAuth = FirebaseAuth.getInstance()
-    private val mDatabaseReference = FirebaseDatabase.getInstance().reference
-        .child(mAuth.currentUser?.uid.toString())
+    init {
+        AUTH = FirebaseAuth.getInstance()
+    }
 
     override val allNotes: LiveData<List<AppNote>> = AllNotesLiveData()
 
     override suspend fun insert(note: AppNote, onSuccess: () -> Unit) {
-        val idNote = mDatabaseReference.push().key.toString()
+        val idNote = DATABASE_REF.push().key.toString()
         val mapNote = hashMapOf<String, Any>()
         mapNote[ID_FIREBASE] = idNote
         mapNote[TITLE] = note.title
         mapNote[TEXT] = note.text
 
-        mDatabaseReference.child(idNote)
+        DATABASE_REF.child(idNote)
             .updateChildren(mapNote)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener { showToast(it.message.toString()) }
     }
 
     override suspend fun delete(note: AppNote, onSuccess: () -> Unit) {
-        TODO("Not yet implemented")
+        DATABASE_REF.child(note.idFirebase).removeValue()
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { showToast(it.message.toString()) }
     }
 
     override fun connectionToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {
-        mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD)
+        AUTH.signInWithEmailAndPassword(EMAIL, PASSWORD)
             .addOnSuccessListener { onSuccess() }
             .addOnFailureListener {
-                mAuth.createUserWithEmailAndPassword(EMAIL, PASSWORD)
+                AUTH.createUserWithEmailAndPassword(EMAIL, PASSWORD)
                     .addOnSuccessListener { onSuccess() }
                     .addOnFailureListener { onFail(it.message.toString()) }
             }
+        CURRENT_ID = AUTH.currentUser?.uid.toString()
+        DATABASE_REF = FirebaseDatabase.getInstance().reference
+            .child(CURRENT_ID)
     }
 
     override fun signOut() {
-        mAuth.signOut()
+        AUTH.signOut()
     }
 }
