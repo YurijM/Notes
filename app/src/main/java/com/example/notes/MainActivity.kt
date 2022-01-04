@@ -9,7 +9,7 @@ import com.example.notes.utilits.APP_ACTIVITY
 
 class MainActivity : AppCompatActivity() {
     lateinit var mToolbar: androidx.appcompat.widget.Toolbar
-    lateinit var mNavController: NavController
+    lateinit var navController: NavController
     private var _binding: ActivityMainBinding? = null
     private val mBinding get() = _binding!!
 
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mToolbar)
         title = getString(R.string.note)
 
-        mNavController = Navigation.findNavController(this, R.id.fragmentNavHost)
+        navController = Navigation.findNavController(this, R.id.fragmentNavHost)
     }
 
     override fun onDestroy() {

@@ -46,7 +46,7 @@ class AddNewNoteFragment : Fragment() {
                 //mViewModel.insert(AppNote(title = title, text = text)) {}
                 mViewModel.insert(AppNote(title = title, text = text)) {
                     mViewModel.viewModelScope.launch(Dispatchers.Main) {
-                        APP_ACTIVITY.mNavController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
+                        APP_ACTIVITY.navController.navigate(R.id.action_addNewNoteFragment_to_mainFragment)
                     }
                 }
             }
