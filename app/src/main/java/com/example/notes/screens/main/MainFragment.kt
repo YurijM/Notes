@@ -1,17 +1,18 @@
 package com.example.notes.screens.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.R
 import com.example.notes.databinding.FragmentMainBinding
 import com.example.notes.models.AppNote
 import com.example.notes.utilits.APP_ACTIVITY
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
@@ -36,6 +37,8 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
+        setHasOptionsMenu(true)
+
         mAdapter = MainAdapter()
         mRecyclerView = mBinding.recycleViewMain
         mRecyclerView.adapter = mAdapter
@@ -48,6 +51,20 @@ class MainFragment : Fragment() {
         mBinding.btnAddNote.setOnClickListener {
             APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_addNewNoteFragment)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_action_exit, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.btnExit -> {
+                mViewModel.signOut()
+                APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroyView() {
