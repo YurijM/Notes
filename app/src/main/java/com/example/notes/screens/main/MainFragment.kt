@@ -11,6 +11,7 @@ import com.example.notes.R
 import com.example.notes.databinding.FragmentMainBinding
 import com.example.notes.models.AppNote
 import com.example.notes.utilits.APP_ACTIVITY
+import com.example.notes.utilits.AppPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -61,6 +62,7 @@ class MainFragment : Fragment() {
         when (item.itemId) {
             R.id.btnExit -> {
                 mViewModel.signOut()
+                AppPreference.setAuthUser(false)
                 APP_ACTIVITY.navController.navigate(R.id.action_mainFragment_to_startFragment)
             }
         }

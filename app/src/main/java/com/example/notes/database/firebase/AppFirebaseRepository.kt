@@ -34,13 +34,27 @@ class AppFirebaseRepository: DatabaseRepository {
     }
 
     override fun connectionToDatabase(onSuccess: () -> Unit, onFail: (String) -> Unit) {
-        AUTH.signInWithEmailAndPassword(EMAIL, PASSWORD)
-            .addOnSuccessListener { onSuccess() }
-            .addOnFailureListener {
-                AUTH.createUserWithEmailAndPassword(EMAIL, PASSWORD)
-                    .addOnSuccessListener { onSuccess() }
-                    .addOnFailureListener { onFail(it.message.toString()) }
-            }
+        if (AppPreference.getAuthUser()) {
+            setConstsDB()
+            onSuccess()
+        } else {
+            AUTH.signInWithEmailAndPassword(EMAIL, PASSWORD)
+                .addOnSuccessListener {
+                    setConstsDB()
+                    onSuccess()
+                }
+                .addOnFailureListener {
+                    AUTH.createUserWithEmailAndPassword(EMAIL, PASSWORD)
+                        .addOnSuccessListener {
+                            setConstsDB()
+                            onSuccess()
+                        }
+                        .addOnFailureListener { onFail(it.message.toString()) }
+                }
+        }
+    }
+
+    private fun setConstsDB() {
         CURRENT_ID = AUTH.currentUser?.uid.toString()
         DATABASE_REF = FirebaseDatabase.getInstance().reference
             .child(CURRENT_ID)

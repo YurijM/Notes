@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.notes.databinding.ActivityMainBinding
 import com.example.notes.utilits.APP_ACTIVITY
+import com.example.notes.utilits.AppPreference
 
 class MainActivity : AppCompatActivity() {
     lateinit var mToolbar: androidx.appcompat.widget.Toolbar
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         title = getString(R.string.note)
 
         navController = Navigation.findNavController(this, R.id.fragmentNavHost)
+
+        AppPreference.getPreferences(this)
     }
 
     override fun onDestroy() {
